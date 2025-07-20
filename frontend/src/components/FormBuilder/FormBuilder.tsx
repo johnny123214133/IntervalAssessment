@@ -29,31 +29,31 @@ export default function FormBuilder() {
 			<p>Show pending form</p>
 			{/*<FormOptions />*/}
 
-			{/*TODO: refactor this into its own component*/}
-			{pendingForm.fields && (
-				{
-					pendingForm.fields.map((field) => {
-						return (
-						if (field.type === 'select') {
-							return (
-								<label>{field.label}</label>
-							<select>
-								{field.options.map((option) => {
-									return <option value={{option}}>{option}</option>
-								})}
-							</select>
-						)
-						}
-						else {
-							return (
-								// TODO: finish other field type rendering
-								<input></input>
-							)
-						}
-					)
-					})
-				}
-			)}
+			{/*/!*TODO: refactor this into its own component*!/*/}
+			{/*{pendingForm.fields && (*/}
+			{/*	{*/}
+			{/*		pendingForm.fields.map((field) => {*/}
+			{/*			return (*/}
+			{/*			if (field.type === 'select') {*/}
+			{/*				return (*/}
+			{/*					<label>{field.label}</label>*/}
+			{/*				<select>*/}
+			{/*					{field.options.map((option) => {*/}
+			{/*						return <option value={{option}}>{option}</option>*/}
+			{/*					})}*/}
+			{/*				</select>*/}
+			{/*			)*/}
+			{/*			}*/}
+			{/*			else {*/}
+			{/*				return (*/}
+			{/*					// TODO: finish other field type rendering*/}
+			{/*					<input></input>*/}
+			{/*				)*/}
+			{/*			}*/}
+			{/*		)*/}
+			{/*		})*/}
+			{/*	}*/}
+			{/*)}*/}
 
 		</>
 	)

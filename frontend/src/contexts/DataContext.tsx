@@ -3,20 +3,19 @@ import {FormField} from "../interfaces/FormField.ts";
 import {FormSchema} from "../interfaces/FormSchema.ts";
 // import { getCurrentForm, getSubmissions } from './functions.js'
 
-export const FormBuilderContext = React.createContext()
+export const CurrentFormContext = React.createContext()
 
 export default function CommuteDataContext({Children}) {
-	const [formParams, setFormParams] = useState<FormField>({
-		label: '',
-		type: 'text',
-		required: true
+
+	const [formVersion, setFormVersion] = useState(0)
+	const [currentForm, setCurrentForm] = useState<FormSchema>({
+		fields: []
 	})
-	const [pendingForm, setPendingForm] = useState<FormSchema>()
 return (
 	<>
-		<FormBuilderContext.Provider value={[setFormParams]}>
+		<CurrentFormContext.Provider value={[currentForm, setCurrentForm]}>
 			<Children />
-		</FormBuilderContext.Provider>
+		</CurrentFormContext.Provider>
 	</>
 )
 

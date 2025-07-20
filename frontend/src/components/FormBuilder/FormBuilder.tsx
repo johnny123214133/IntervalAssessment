@@ -1,10 +1,18 @@
 import { useState, useContext } from "react";
 import NavBar from "../NavBar/NavBar.tsx";
+import {CurrentFormContext} from "../../contexts/DataContext.tsx";
+import {FormField} from "../../interfaces/FormField.ts";
 
 export default function FormBuilder() {
-
-const [] = useState()
-	const [setFormParams] = useContext(setFormParams)
+	const [formParams, setFormParams] = useState<FormField>({
+		label: '',
+		type: 'text',
+		required: true,
+		options: []
+	})
+	const [] = useState()
+	// const [setFormParams] = useContext(setFormParams)
+	const [currentForm, setCurrentForm] = useContext(CurrentFormContext)
 
 	return (
 		<>

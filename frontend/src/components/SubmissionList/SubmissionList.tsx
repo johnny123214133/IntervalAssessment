@@ -4,7 +4,7 @@ export default function SubmissionList() {
 	return (
 		<>
 			<NavBar />
-
+			<h3>List all submission data</h3>
 
 		</>
 	)

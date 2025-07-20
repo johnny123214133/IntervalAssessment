@@ -12,6 +12,9 @@ export default function CustomerForm() {
 			<p>Build a submittable form mapping the values in currentForm</p>
 			<p>Submit Button at the bottom</p>
 			<p>alert on submission</p>
+
+
 		</>
+
 	)
 }

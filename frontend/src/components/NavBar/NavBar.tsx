@@ -17,19 +17,23 @@ return (
 	<Navbar className="p-0 bg-white" sticky="top" expand="lg">
 		<Container fluid>
 
-			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Toggle aria-controls="basic-navbar-nav"/>
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Stack className="pt-3 px-2 bg-white" direction="vertical">
 					<Row>
 						<Stack direction="horizontal" gap={3}>
 							<Button variant="link" onClick={handleNavigation} name='' className="navbar-link">Home</Button>
-							<Button variant="link" onClick={handleNavigation} name='FormBuilder' className="navbar-link">Form Builder</Button>
-							<Button variant="link" onClick={handleNavigation} name='CustomerForm' className="navbar-link">Customer Form</Button>
-							<Button variant="link" onClick={handleNavigation} name='SubmissionList' className="navbar-link">Submission List</Button>
+							<Button variant="link" onClick={handleNavigation} name='FormBuilder' className="navbar-link">Form
+								Builder</Button>
+							<Button variant="link" onClick={handleNavigation} name='CustomerForm' className="navbar-link">Customer
+								Form</Button>
+							<Button variant="link" onClick={handleNavigation} name='SubmissionList' className="navbar-link">Submission
+								List</Button>
 						</Stack>
 					</Row>
 				</Stack>
 			</Navbar.Collapse>
+
 		</Container>
 	</Navbar>
 

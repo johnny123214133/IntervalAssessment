@@ -1,0 +1,12 @@
+.paragraph-button {
+    padding: 0;
+    border: none;
+    background-color: transparent; /* Ensure no background color */
+    color: black; /* Inherit text color from parent for a more natural paragraph look */
+    text-decoration: none;
+    text-align: left; /* Align text to the left, typical for paragraphs */
+    pointer-events: auto;
+    cursor: pointer; /* Keep the cursor as a pointer to indicate it's clickable */
+    font-family: inherit; /* Inherit font family */
+    font-size: inherit; /* Inherit font size */
+}

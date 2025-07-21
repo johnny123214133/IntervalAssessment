@@ -7,21 +7,16 @@ import DataContext from "./contexts/DataContext.tsx";
 
 
 function App() {
-	// const handleSupportClick = () => {
-	// 	console.log('Opening REDO Customer Support...');
-	// 	alert('Welcome to REDO Customer Support! 🎉');
-	// };
-
+	/*
+	I designed this solution following the MVC design pattern.
+	The DataContext component handles the underlying data model, including its state and spearheads the persisting of the data.
+	The AppRouter and its children handle the viewing and controlling of what data passes to and from the DataContext.
+	 */
 	return (
 		<>
 			<DataContext Children={AppRouter} />
 		</>
 
-		// <div className="app-container">
-		//   <button onClick={handleSupportClick} className="support-button">
-		//     REDO Customer Support
-		//   </button>
-		// </div>
 	);
 }
 

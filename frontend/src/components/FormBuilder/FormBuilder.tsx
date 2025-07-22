@@ -8,7 +8,8 @@ import Stack from "react-bootstrap/Stack";
 import {InputGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import Row from "react-bootstrap/Row"
+import {ToastContainer, toast, Slide} from 'react-toastify';
 
 export default function FormBuilder() {
 	// TODO: move to a constants file?
@@ -87,19 +88,18 @@ export default function FormBuilder() {
 	function handleAddField():void {
 		if (validateFieldParams()) {
 			setPendingForm({...pendingForm, fields: [...pendingForm.fields, fieldParams]})
-			// TODO: reset field options and fieldParams state
-			// resetFieldParams()
+			// TODO: reset field options and fieldParams state?
 		}
 	}
 	function handleSaveForm():void {
-		// setCurrentForm(pendingForm)
 		saveCurrentForm(pendingForm)
-		alert('Saved Form')
+		toast("Saved Form")
 	}
 
 	return (
 	<>
 		<NavBar />
+		<ToastContainer position={"top-center"} autoClose={700} hideProgressBar={true} transition={Slide} />
 		<Stack direction={"horizontal"} className={"align-items-start"}>
 			<Col md={4} className={"p-4 flex-column"}>
 				<h3>Field Options</h3>

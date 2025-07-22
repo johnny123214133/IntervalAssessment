@@ -17,5 +17,8 @@
   "devDependencies": {
     "concurrently": "^8.2.0"
   },
-  "description": "REDO Customer Support - Full Stack Application"
+  "description": "REDO Customer Support - Full Stack Application",
+  "dependencies": {
+    "react-toastify": "^11.0.5"
+  }
 }

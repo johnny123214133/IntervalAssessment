@@ -4,6 +4,7 @@ import {DeleteCustomerSubmissionsContext, GetCustomerSubmissionsContext} from ".
 import {FormSubmissions} from "../../interfaces/FormSubmissions.ts";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
+import {Slide, toast, ToastContainer} from "react-toastify";
 
 export default function SubmissionList() {
 
@@ -18,17 +19,20 @@ export default function SubmissionList() {
 
 	function handleRefreshData() {
 		setSubmissions(getCustomerSubmissions())
+		toast("Refreshed Submissions")
 	}
 
 	function handleDeleteData() {
 		deleteCustomerSubmissions()
 		setSubmissions(getCustomerSubmissions())
+		toast("Deleted Submissions")
 	}
 
 	// TODO: break the following rendering into components
 	return (
 		<>
 			<NavBar />
+			<ToastContainer position={"top-center"} autoClose={700} hideProgressBar={true} transition={Slide} />
 			<h3 className={"mb-3"}>Submission Data</h3>
 			{submissions && (
 				<>

@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import {FormField} from "../../interfaces/FormField.ts";
 import Button from "react-bootstrap/Button";
+import {Slide, toast, ToastContainer} from "react-toastify";
 
 export default function CustomerForm() {
 
@@ -42,13 +43,14 @@ export default function CustomerForm() {
 			return
 		}
 		saveCustomerSubmission(submittableForm)
-		alert('Submission saved')
+		toast("Submission saved")
 		resetForm()
 	}
 
 	return (
 		<>
 			<NavBar />
+			<ToastContainer position={"top-center"} autoClose={700} hideProgressBar={true} transition={Slide} />
 			<h3>Submittable Form</h3>
 
 			<Stack as={Col} md={{ span: 8, offset: 2 }} direction={"vertical"} className={"p-4 justify-content-center"}>

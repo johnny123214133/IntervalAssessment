@@ -151,7 +151,7 @@ export default function FormBuilder() {
 											aria-describedby="optionLabel"
 											onChange={handlePendingOptionChange}
 										/>
-										<Button onClick={handleAddOption}>Add Option</Button>
+										<Button variant={"secondary"} onClick={handleAddOption}>Add Option</Button>
 									</InputGroup>
 								</Stack>
 								<p className="px-3 py-2 m-0"><b>Options: (click to remove)</b></p>

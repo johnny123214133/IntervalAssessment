@@ -3,4 +3,5 @@ export interface FormField {
 	type: "text" | "email" | "select" | "textarea"
 	required: boolean
 	options: string[]
+	value?: string
 }

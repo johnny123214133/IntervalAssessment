@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import NavBar from "../NavBar/NavBar.tsx";
-import {SetCurrentFormContext} from "../../contexts/DataContext.tsx";
+import {SaveCurrentFormContext} from "../../contexts/DataContext.tsx";
 import {FormField} from "../../interfaces/FormField.ts";
 import {FormSchema} from "../../interfaces/FormSchema.ts";
 import Form from "react-bootstrap/Form";
@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export default function FormBuilder() {
+	// TODO: move to a constants file?
 	const defaultFieldParams: FormField = {
 		label: '',
 		type: 'text',
@@ -19,7 +20,7 @@ export default function FormBuilder() {
 	}
 	const [fieldParams, setFieldParams] = useState<FormField>(defaultFieldParams)
 
-	const [setCurrentForm] = useContext(SetCurrentFormContext)
+	const [saveCurrentForm] = useContext(SaveCurrentFormContext)
 
 	const [pendingForm, setPendingForm] = useState<FormSchema>({fields: []})
 	const [pendingOption, setPendingOption] = useState("")
@@ -37,11 +38,6 @@ export default function FormBuilder() {
 		else {
 			setFieldParams({...fieldParams, required: false})
 		}
-	}
-
-	// TODO: call the following when fieldParams and Field options fields are reset simultaneously
-	function resetFieldParams() {
-		setFieldParams(defaultFieldParams)
 	}
 
 	function handlePendingOptionChange(event): void {
@@ -67,7 +63,7 @@ export default function FormBuilder() {
 		setFieldParams({...fieldParams, options: newOptions})
 	}
 
-	function labelExistsinFields(label:string):boolean {
+	function labelExistsInFields(label:string):boolean {
 		for (const field of pendingForm.fields) {
 			if (label === field.label) return true
 		}
@@ -78,7 +74,7 @@ export default function FormBuilder() {
 			alert('Label cannot be empty')
 			return false
 		}
-		if (labelExistsinFields(fieldParams.label)) {
+		if (labelExistsInFields(fieldParams.label)) {
 			alert('Label is already in use')
 			return false
 		}
@@ -96,7 +92,9 @@ export default function FormBuilder() {
 		}
 	}
 	function handleSaveForm():void {
-		setCurrentForm(pendingForm)
+		// setCurrentForm(pendingForm)
+		saveCurrentForm(pendingForm)
+		alert('Saved Form')
 	}
 
 	return (
@@ -106,7 +104,7 @@ export default function FormBuilder() {
 			<Col md={4} className={"p-4 flex-column"}>
 				<h3>Field Options</h3>
 					<Form>
-						<Form.Group as={Row} className="mb-3" controlId="fieldLabel">
+						<Form.Group as={Row} className="mb-3" >
 							<Stack direction={"horizontal"}>
 								<Form.Label column htmlFor="fieldLabel" className={"me-3"}><b>Label</b></Form.Label>
 								<Form.Control type="text" id="fieldLabel" className={"ms-auto"} aria-describedby="fieldLabelDescription"
@@ -117,7 +115,7 @@ export default function FormBuilder() {
 							</Form.Text>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="fieldRequired">
+						<Form.Group className="mb-3" >
 							<Stack direction={"horizontal"}>
 								<Form.Label htmlFor="fieldRequired" className={"me-auto"}><b>Field Required?</b></Form.Label>
 								<Form.Check inline type="radio" name="fieldRequiredGroup" value="true" label="True"
@@ -127,7 +125,7 @@ export default function FormBuilder() {
 							</Stack>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="fieldType">
+						<Form.Group className="mb-3" >
 							<Stack direction={"horizontal"}>
 								<Form.Label htmlFor="fieldType" className={"me-auto"}><b>Field Type</b></Form.Label>
 								<Form.Check inline type="radio" name="fieldTypeGroup" value="text" label="text"
@@ -169,45 +167,54 @@ export default function FormBuilder() {
 							</Stack>
 						)}
 						<Stack direction={"horizontal"} className={"mt-auto justify-content-center"}>
-							<Button className={"mx-2"} onClick={handleAddField}>Add Field</Button>
-							<Button className={"mx-2"} onClick={handleSaveForm}>Save Form</Button>
+							<Button variant={"secondary"} className={"mx-2"} onClick={handleAddField}>Add Field</Button>
+							<Button variant={"secondary"} className={"mx-2"} onClick={handleSaveForm}>Save Form</Button>
 						</Stack>
 					</Form>
 			</Col>
 
 			{/* TODO: Merge this with CustomerForm's form rendering. Or are they too different? Else, isolate into its own component */}
+			{/* TODO: refactor the mapping into several components since so much code is repeated*/}
 			<Col md={8} className={"p-4"}>
 				<h3>Pending Form</h3>
 				<Form>
 					{pendingForm.fields.map((field, index) => {
 						if (field.type === "text" || field.type === "email") {
 							return (
-								<Form.Group className="mb-1" controlId={`field-${index}`}>
-									<Form.Label htmlFor={`field-${index}`} className={"me-3"}>{field.label}</Form.Label>
-									<Form.Control type={field.type} id={`field-${index}`} />
-									{field.required && <Form.Text className="text-muted">This is a required field.</Form.Text>}
+								<Form.Group key={index} className="mb-1">
+									<Stack direction={"vertical"}>
+										<Form.Label column htmlFor={`field-${index}`} className={"me-3"}>{field.label}</Form.Label>
+										<Form.Control type={field.type} id={`field-${index}`} />
+									</Stack>
+									{field.required && <Form.Text className="text-muted ms-auto">This is a required field.</Form.Text>}
 								</Form.Group>
 							)
 						}
 						else if (field.type === "textarea") {
 							return (
-								<Form.Group className="mb-1" controlId={`field-${index}`}>
-									<Form.Label htmlFor={`field-${index}`} className={"me-3"}>{field.label}</Form.Label>
-									<Form.Control as="textarea" rows={3} id={`field-${index}`}/>
-									{field.required && <Form.Text className="text-muted">This is a required field.</Form.Text>}
+								<Form.Group key={index} className="mb-1" >
+									<Stack direction={"vertical"}>
+										<Form.Label column htmlFor={`field-${index}`} className={"me-3"}>{field.label}</Form.Label>
+										<Form.Control as="textarea" rows={3} id={`field-${index}`}/>
+									</Stack>
+									{field.required && <Form.Text className="text-muted ms-auto">This is a required field.</Form.Text>}
 								</Form.Group>
 							)
 						}
 						else if (field.type === "select") {
 							return (
-								<Form.Group className="mb-1" controlId={`field-${index}`}>
-									<Form.Select>
-										{field.options.map((option:string) => {
-											return (
-												<option value={option}>{option}</option>
-											)
-										})}
-									</Form.Select>
+								<Form.Group key={index} className="mb-1" >
+									<Stack direction={"vertical"}>
+									<Form.Label column htmlFor={`field-${index}`} className={"me-3"}>{field.label}</Form.Label>
+										<Form.Select className={"ms-auto"}>
+											{field.options.map((option:string, index) => {
+												return (
+													<option key={index} value={option}>{option}</option>
+												)
+											})}
+										</Form.Select>
+									</Stack>
+									{field.required && <Form.Text className="text-muted ms-auto">This is a required field.</Form.Text>}
 								</Form.Group>
 							)
 						}

@@ -1,4 +1,5 @@
-import FormField from './FormField.ts'
+import {FormField} from './FormField.ts'
+
 export interface FormSchema {
 	fields: FormField[]
 }

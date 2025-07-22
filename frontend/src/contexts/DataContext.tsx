@@ -1,30 +1,34 @@
-import React, { useState, useEffect, createContext, useMemo, useRef } from 'react'
-import {FormField} from "../interfaces/FormField.ts";
-import {FormSchema} from "../interfaces/FormSchema.ts";
-// import { getCurrentForm, getSubmissions } from './functions.js'
+import React from 'react'
+import {saveCustomerSubmission, getCustomerSubmissions, deleteCustomerSubmissions, getCurrentForm, saveCurrentForm} from "./functions.ts";
 
-export const CurrentFormContext = React.createContext()
-export const SetCurrentFormContext = React.createContext()
+export const SubmittableFormContext = React.createContext()
+
+export const GetCurrentFormContext = React.createContext()
+export const SaveCurrentFormContext = React.createContext()
+
+export const SaveCustomerSubmissionContext = React.createContext()
+export const GetCustomerSubmissionsContext = React.createContext()
+export const DeleteCustomerSubmissionsContext = React.createContext()
 
 export default function CommuteDataContext({Children}) {
 
-	const [currentForm, setCurrentForm] = useState<FormSchema>({
-		fields: []
-	})
-
-	useEffect(() => {
-		if (!currentForm) return // prevent useEffect from running on initial mount
-
-		// TODO: save the current form returned from the builder page
-	}, [currentForm])
-
 return (
 	<>
-		<CurrentFormContext.Provider value={[currentForm]}>
-		<SetCurrentFormContext.Provider value={[setCurrentForm]}>
+		<GetCurrentFormContext.Provider value={[getCurrentForm]}>
+		<SaveCurrentFormContext.Provider value={[saveCurrentForm]}>
+
+		<GetCustomerSubmissionsContext.Provider value={[getCustomerSubmissions]}>
+		<SaveCustomerSubmissionContext.Provider value={[saveCustomerSubmission]}>
+		<DeleteCustomerSubmissionsContext.Provider value={[deleteCustomerSubmissions]}>
+
 			<Children />
-		</SetCurrentFormContext.Provider>
-		</CurrentFormContext.Provider>
+
+		</DeleteCustomerSubmissionsContext.Provider>
+		</SaveCustomerSubmissionContext.Provider>
+		</GetCustomerSubmissionsContext.Provider>
+
+		</SaveCurrentFormContext.Provider>
+		</GetCurrentFormContext.Provider>
 	</>
 )
 

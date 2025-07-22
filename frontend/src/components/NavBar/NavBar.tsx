@@ -6,6 +6,8 @@ import Stack from 'react-bootstrap/Stack'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 
+import './NavBar.css'
+
 import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
@@ -14,7 +16,7 @@ export default function NavBar() {
 		navigate('/' + event.currentTarget.getAttribute('name'));
 	};
 return (
-	<Navbar className="p-0 bg-white" sticky="top" expand="lg">
+	<Navbar className="p-0 pb-2 bg-white" sticky="top" expand="lg">
 		<Container fluid>
 
 			<Navbar.Toggle aria-controls="basic-navbar-nav"/>

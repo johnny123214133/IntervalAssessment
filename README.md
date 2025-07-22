@@ -1,6 +1,6 @@
-# Customer Support - Monorepo
+# PetCare Solutions Form Builder - Monorepo
 
-A full-stack application featuring a beautiful customer support interface with Node.js backend and React frontend.
+A full-stack application featuring a beautiful form builder interface with Node.js backend and React frontend.
 
 ## 🚀 Quick Start
 
@@ -47,12 +47,9 @@ API available at: http://localhost:5000
 ## 🎨 Features
 
 ### Frontend
-- Beautiful gradient landing page
-- Animated "REDO Customer Support" button
-- Responsive design with mobile-first approach
-- Modern UI with Tailwind CSS
-- Smooth animations and micro-interactions
-- Professional typography with Inter font
+- Home page
+- Simple but smooth animations and micro-interactions
+- Professional typography
 
 ### Backend
 - Express.js REST API
@@ -63,21 +60,19 @@ API available at: http://localhost:5000
 - Support ticket creation endpoint
 
 ## 🔧 API Endpoints
-
-- `GET /api/health` - Health check
-- `GET /api/support` - Get support information
-- `POST /api/support/ticket` - Create support ticket
+- (not yet implemented)
 
 ## 🎯 Technologies Used
 
 ### Frontend
 - React 18 with TypeScript
 - Vite for fast development
-- Tailwind CSS for styling
+- Bootstrap for layout and styling
 - Lucide React for icons
 - Inter font for typography
 
 ### Backend
+- (Not yet implememnted)
 - Node.js with Express
 - CORS for cross-origin requests
 - Helmet for security
@@ -92,14 +87,5 @@ API available at: http://localhost:5000
 - `npm run build` - Build frontend for production
 - `npm run install:all` - Install all dependencies
 
-## 🎨 Design Philosophy
-
-This project follows Apple-level design aesthetics with:
-- Clean, minimal interface
-- Thoughtful animations and transitions
-- Premium color gradients
-- Consistent spacing and typography
-- Responsive design patterns
-- Accessible color contrasts
 
 Built with ❤️ for exceptional customer experience.

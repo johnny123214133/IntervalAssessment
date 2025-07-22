@@ -101,7 +101,7 @@ export default function FormBuilder() {
 		<NavBar />
 		<ToastContainer position={"top-center"} autoClose={700} hideProgressBar={true} transition={Slide} />
 		<Stack direction={"horizontal"} className={"align-items-start"}>
-			<Col md={4} className={"p-4 flex-column"}>
+			<Col md={4} className={"px-4 flex-column"}>
 				<h3>Field Options</h3>
 					<Form>
 						<Form.Group as={Row} className="mb-3" >
@@ -175,7 +175,7 @@ export default function FormBuilder() {
 
 			{/* TODO: Merge this with CustomerForm's form rendering. Or are they too different? Else, isolate into its own component */}
 			{/* TODO: refactor the mapping into several components since so much code is repeated*/}
-			<Col md={8} className={"p-4"}>
+			<Col md={8} className={"px-4"}>
 				<h3>Pending Form</h3>
 				<Form>
 					{pendingForm.fields.map((field, index) => {
